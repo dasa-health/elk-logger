@@ -11,8 +11,6 @@ import (
 	"runtime/debug"
 	"strings"
 	"time"
-
-	logger "github.com/dasa-health/elk-logger"
 )
 
 type elk struct {
@@ -132,7 +130,7 @@ func elkLogger(level, message string, args ...interface{}) {
 
 func getError() {
 	if r := recover(); r != nil {
-		logger.Info(fmt.Sprintf("Error to send logs to elasticsearch : %v", r), nil)
+		Error(fmt.Sprintf("Error to send logs to elasticsearch : %v", r), nil)
 		debug.PrintStack()
 	}
 }
