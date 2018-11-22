@@ -102,8 +102,11 @@ func elkLogger(level, message string, args ...interface{}) {
 		RequestID: getRequestID(),
 		Level:     level,
 		Message:   message,
-		Args:      args,
 	}
+	if args != nil && len(args) > 0 {
+		index.Args = args
+	}
+
 	index.Environment = elkBase.Environment
 	index.Release = elkBase.Release
 
